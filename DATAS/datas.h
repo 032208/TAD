@@ -6,3 +6,4 @@ typedef struct
 
 //criar uma data de forma dinâmica 
 Data * novaData(unsigned int dia, unsigned int mes, unsigned int ano);
+
