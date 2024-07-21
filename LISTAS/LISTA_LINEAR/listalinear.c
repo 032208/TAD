@@ -1,5 +1,6 @@
 #include "listalinear.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 Lista * Nova_listalinear(int capacidade){
     Lista * nova_LL = NULL;
@@ -27,4 +28,47 @@ void ImprimeLista(Lista * nova_LL){
         printf("%d, ", nova_LL->elementos[i]);
     }
     printf("]\n");
+}
+
+void RemoveElemento(Lista * nova_LL, int n){
+    //encontra o elemento
+    int pos = -1;
+    for(int i=0; i<nova_LL->n_elementos; i++){
+        if(nova_LL->elementos[i]== n){
+            pos = i;
+            break;
+        }
+    }
+
+    if(pos == -1){
+        printf("Elemento %d não encontrado na lista.\n", n);
+        return;
+    }
+
+    for(int i = pos; i<nova_LL->n_elementos-1; i++){
+        nova_LL->elementos[i] = nova_LL->elementos[i+1];
+    }
+    (nova_LL->n_elementos)--;
+    printf("Elemento %d removido com sucesso.\n", n);
+}
+
+void ExpandeLista(Lista * nova_LL, int nova_capacidade){
+
+    int *novo_elemento = realloc(nova_LL->elementos, sizeof(int)*nova_capacidade);
+
+    if (novo_elemento == NULL) {
+        printf("Erro ao expandir a lista. Memória insuficiente.\n");
+        return;
+    }
+
+    nova_LL->elementos = novo_elemento;
+    nova_LL->capacidade = nova_capacidade;
+
+    printf("Capacidade da lista atualizada para %d elementos.\n", nova_capacidade);
+}
+
+void FreeLista(Lista * nova_LL){
+    free(nova_LL->elementos);
+    free(nova_LL);
+    printf("Memoria liberada.\n");
 }

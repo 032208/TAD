@@ -1,6 +1,5 @@
 #ifndef __LISTALINEAR_H__
 #define __LISTALINEAR_H__
-#include <stdlib.h>
 
 typedef struct _listalinear
 {
@@ -17,5 +16,14 @@ void InserirElemento(Lista * nova_LL, int n);
 
 //imprime os elementos da lista
 void ImprimeLista(Lista * nova_LL);
+
+//remover um elemento da lista
+void RemoveElemento(Lista * nova_LL, int n);
+
+//expande a capacidade de armazenamento da lista
+void ExpandeLista(Lista * nova_LL, int nova_capacidade);
+
+//libera mémoria da lista
+void FreeLista(Lista * nova_LL);
 
 #endif
